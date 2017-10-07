@@ -19,11 +19,18 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Client disconnected!!');
   })
+
+  socket.emit('newMessage', {
+    from: 'adam',
+    text: 'siema jestem Adam',
+    created_at: new Date().toISOString()
+  });
+
+  socket.on('createMessage', (msg) => {
+    console.log('createMessage: ', msg);
+  });
 });
 
-io.on('disconnected', () => {
-  console.log('io.disconnected');
-});
 
 
 
